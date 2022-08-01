@@ -1,0 +1,118 @@
+﻿@page "/base64"
+@inject ILogger<Base64> _logger
+@inject IJSRuntime _jsRuntime;
+
+
+<PageTitle>base64</PageTitle>
+
+<h1>base64</h1>
+
+<div class="row">
+    <h3>Encode</h3>
+    <form id="encode-form">
+        <div class="mb-3">
+            <div id="sourceHelp" class="form-text">The text you want to encode to base64.</div>
+            <textarea @oninput="SourceTextAreaOnChange"
+                      @onpaste="SourceTextAreaOnPaste"
+                      class="form-control"
+                      id="source"
+                      aria-describedby="sourceHelp"
+                      rows="7" />
+        </div>
+        <div class="mb-3">
+            <div id="base64ResultHelp" class="form-text">The encoded result</div>
+            <textarea class="form-control"
+                      id="base64Result"
+                      aria-describedby="base64ResultHelp"
+                      rows="7"
+                      readonly="readonly">
+                @_encodedBase64Result
+            </textarea>
+        </div>
+    </form>
+</div>
+<hr />
+<div class="row">
+    <h3>Decode</h3>
+    <form id="decode-form">
+        <div class="mb-3">
+            <div id="encodedSourceHelp" class="form-text">The text you want to decode from base64.</div>
+            <textarea @oninput="EncodedTextAreaOnChange"
+                      @onpaste="EncodedTextAreaOnPaste"
+                      class="form-control"
+                      id="encodedSource"
+                      aria-describedby="encodedSourceHelp"
+                      rows="7" />
+        </div>
+        <div class="mb-3">
+            <div id="decodedHelp" class="form-text">The decoded result</div>
+            <textarea class="form-control"
+                      id="decoded"
+                      aria-describedby="decodedHelp"
+                      rows="7"
+                      readonly="readonly">
+                @_decodedResult
+            </textarea>
+        </div>
+    </form>
+</div>
+
+@code {
+    private bool _sourcePasted;
+    private string? _sourceInput { get; set; }
+    private string? _encodedBase64Result { get; set; }
+    private string? _encodedBase64Input { get; set; }
+    private string? _decodedResult { get; set; }
+
+    public Base64()
+    {
+        _sourceInput = string.Empty;
+        _encodedBase64Result = string.Empty;
+        _encodedBase64Input = string.Empty;
+        _decodedResult = string.Empty;
+    }
+
+    public async Task SourceTextAreaOnChange(ChangeEventArgs args)
+    {
+        _logger.LogInformation("SourceTextAreaOnChange");
+        _sourceInput = args.Value?.ToString() ?? string.Empty;
+        var bytes = System.Text.Encoding.UTF8.GetBytes(_sourceInput);
+        var encodedValue = System.Convert.ToBase64String(bytes);
+        _encodedBase64Result = encodedValue;
+
+        if (_sourcePasted)
+        {
+            await _jsRuntime.InvokeVoidAsync("navigator.clipboard.writeText", _encodedBase64Result);
+            _sourcePasted = false;
+        }
+    }
+
+    public Task SourceTextAreaOnPaste(ClipboardEventArgs args)
+    {
+        _sourcePasted = true;
+        return Task.CompletedTask;
+    }
+
+    public Task EncodedTextAreaOnChange(ChangeEventArgs args)
+    {
+        try
+        {
+            _encodedBase64Input = args.Value?.ToString() ?? string.Empty;
+            var decodedBytes = System.Convert.FromBase64String(_encodedBase64Input);
+            var decodedResult = System.Text.Encoding.UTF8.GetString(decodedBytes);
+            _decodedResult = decodedResult;
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e, "Error when trying to decode base64 string");
+        }
+        return Task.CompletedTask;
+    }
+
+    public Task EncodedTextAreaOnPaste(ClipboardEventArgs args)
+    {
+        Console.WriteLine("PASTE HAPPENED");
+
+        return Task.CompletedTask;
+    }
+}
