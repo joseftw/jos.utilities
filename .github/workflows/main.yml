@@ -10,18 +10,15 @@ jobs:
     concurrency: ci-${{ github.ref }} # Recommended if you intend to make multiple deployments in quick succession.
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout 🛎️
+      - name: Checkout
         uses: actions/checkout@v3
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 6.*
-      - name: List directories
-        run: |
-          ls
-      - name: Publish with dotnet
+      - name: dotnet publish
         run: dotnet publish '.\src\JOS.Utilities.UI\' --configuration Release --output build
-      - name: Deploy 🚀
+      - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: build
