@@ -20,7 +20,7 @@ jobs:
         run: |
           ls
       - name: Publish with dotnet
-        run: dotnet publish --configuration Release --output build
+        run: dotnet publish '.\src\JOS.Utilities.UI\' --configuration Release --output build
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
