@@ -20,6 +20,8 @@ jobs:
         run: dotnet publish '.\src\JOS.Utilities.UI\' --configuration Release --output build
       - name: release
         run: |
+          git config user.name "GitHub Action"
+          git config user.email "none@localhost.local"
           git fetch
           git checkout release
           git mv build/* . -k
