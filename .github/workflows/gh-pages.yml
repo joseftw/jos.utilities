@@ -24,8 +24,8 @@ jobs:
           git config user.email "none@localhost.local"
           git fetch
           git checkout release
-          git rm * ':!build/*' -r --ignore-unmatch
           git add build/*
+          git rm * ':!build/*' -r --ignore-unmatch
           git mv build/* . -k
           git commit -m "Deploy ${{github.ref}}"
           git push
