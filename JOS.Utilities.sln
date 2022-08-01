@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B569F5F0-0B80-4848-A7AA-46406F012BB1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JOS.Utilities.UI", "src\JOS.Utilities.UI\JOS.Utilities.UI.csproj", "{FD8E96CC-735A-411E-871D-A82452CC7367}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{153BA5FF-64D9-4770-9272-5EA510931B63}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FD8E96CC-735A-411E-871D-A82452CC7367}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD8E96CC-735A-411E-871D-A82452CC7367}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD8E96CC-735A-411E-871D-A82452CC7367}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD8E96CC-735A-411E-871D-A82452CC7367}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FD8E96CC-735A-411E-871D-A82452CC7367} = {B569F5F0-0B80-4848-A7AA-46406F012BB1}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4843ED47-F00E-4BC7-8C5B-E06A25832A9B}
+	EndGlobalSection
+EndGlobal
