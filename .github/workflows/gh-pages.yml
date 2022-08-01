@@ -18,14 +18,10 @@ jobs:
           dotnet-version: 6.*
       - name: dotnet publish
         run: dotnet publish '.\src\JOS.Utilities.UI\' --configuration Release --output build
-      # add .nojekyll file to tell GitHub pages to not treat this as a Jekyll project. (Allow files and folders starting with an underscore)
-      - name: Add .nojekyll file
-        run: touch build/wwwroot/.nojekyll
-      # copy index.html to 404.html to serve the same file when a file is not found
-      - name: copy index.html to 404.html
-        run: cp build/wwwroot/index.html build/wwwroot/404.html
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: build/wwwroot # The folder the action should deploy.
-          single-commit: true
+      - name: release
+        run: |
+          git checkout release
+          git rm -r * --ignore-unmatch
+          git mv build/* .
+          git add .
+          git commit -m "Deploy"
