@@ -22,7 +22,6 @@ jobs:
         run: |
           git fetch
           git checkout release
-          git rm -r * --ignore-unmatch
           git mv build/* .
           git add .
           git commit -m "Deploy"
