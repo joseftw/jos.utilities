@@ -28,6 +28,8 @@ jobs:
           git rm * ':!build/*' -r --ignore-unmatch
           echo 'Commiting...'
           git commit -m "Removed all old files"
+          echo 'Creating fallback routes file'
+          echo '{"navigationFallback":{"rewrite": "/index.html"}}' >> build/staticwebapp.config.json
           echo 'Adding all files in build directory'
           git add build/*
           echo 'Moving files from build directory'
