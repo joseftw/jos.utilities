@@ -21,13 +21,9 @@
         </div>
         <div class="mb-3">
             <div id="base64ResultHelp" class="form-text">The encoded result</div>
-            <textarea class="form-control"
-                      id="base64Result"
-                      aria-describedby="base64ResultHelp"
-                      rows="7"
-                      readonly="readonly">
+            <pre class="bg-light base64-result">
                 @_encodedBase64Result
-            </textarea>
+            </pre>
         </div>
     </form>
 </div>
@@ -46,13 +42,9 @@
         </div>
         <div class="mb-3">
             <div id="decodedHelp" class="form-text">The decoded result</div>
-            <textarea class="form-control"
-                      id="decoded"
-                      aria-describedby="decodedHelp"
-                      rows="7"
-                      readonly="readonly">
+            <pre class="bg-light base64-result">
                 @_decodedResult
-            </textarea>
+            </pre>
         </div>
     </form>
 </div>
