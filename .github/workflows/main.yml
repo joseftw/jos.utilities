@@ -13,7 +13,7 @@ jobs:
     - name: Publish with dotnet
       run: dotnet publish --configuration Release --output build
     - name: Deploy to Github Pages
-      uses: JamesIves/github-pages-deploy-action@releases/v4.4.0
+      uses: JamesIves/github-pages-deploy-action@releases/v4
       with:
         ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         BASE_BRANCH: dev # The branch the action should deploy from.
