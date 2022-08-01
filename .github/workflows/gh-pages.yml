@@ -20,6 +20,7 @@ jobs:
         run: dotnet publish '.\src\JOS.Utilities.UI\' --configuration Release --output build
       - name: release
         run: |
+          git fetch
           git checkout release
           git rm -r * --ignore-unmatch
           git mv build/* .
