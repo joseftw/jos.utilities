@@ -35,7 +35,7 @@ jobs:
           echo 'Moving files from build directory'
           git mv build/* . -k
           echo 'Commiting...'
-          git commit -m "Deploy ${{github.ref}}"
+          git commit -m "Deploy ${{ github.sha }}"
       - name: Push Changes
         uses: ad-m/github-push-action@master
         with:
