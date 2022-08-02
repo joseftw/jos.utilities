@@ -8,4 +8,4 @@
 Blazor WASM site with a few utilities that simplifies my life.
 
 ### [/base64](https://stuff.josef.codes/base64)
-Allows for encoding/decoding base64 strings
+Encoding/decoding of base64 strings
