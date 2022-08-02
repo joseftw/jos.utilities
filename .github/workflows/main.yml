@@ -18,7 +18,6 @@ jobs:
           dotnet-version: 6.*
       - name: version
         run: |
-          dotnet tool install -g nbgv
           nbgv get-version -v NuGetPackageVersion > semantic_version.txt
           cat semantic_version.txt
       - name: dotnet publish
