@@ -18,9 +18,11 @@ jobs:
         with:
           dotnet-version: 6.*
       - name: version
+        id: set-version
         run: |
-          nbgv get-version -v NuGetPackageVersion > semantic_version.txt
-          cat semantic_version.txt
+          export VERSION=nbgv get-version -v NuGetPackageVersion
+          echo "::set-env name=VERSION::$VERSION"
+          echo $VERSION
       - name: dotnet publish
         run: dotnet publish '.\src\JOS.Utilities.UI\' --configuration Release --output build
       - name: release
