@@ -4,9 +4,7 @@
 
 [![CI/CD](https://github.com/joseftw/jos.utilities/actions/workflows/azure-static-web-apps-red-pebble-082cc7f03.yml/badge.svg?branch=release)](https://github.com/joseftw/jos.utilities/actions/workflows/azure-static-web-apps-red-pebble-082cc7f03.yml)
 
-## [stuff.josef.codes](https://stuff.josef.codes)
-
-## Info
+## Info - [stuff.josef.codes](https://stuff.josef.codes)
 Blazor WASM site with a few utilities that simplifies my life.
 
 ### [/base64](https://stuff.josef.codes/base64)
