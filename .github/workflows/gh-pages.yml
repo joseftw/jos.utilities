@@ -10,6 +10,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+          token: ${{secrets.PAT}}
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1
         with:
@@ -18,8 +21,6 @@ jobs:
         run: dotnet publish '.\src\JOS.Utilities.UI\' --configuration Release --output build
       - name: release
         run: |
-          git config user.name "GitHub Action"
-          git config user.email "none@localhost.local"
           git fetch
           git checkout release
           echo 'Removing all old files...'
@@ -34,8 +35,4 @@ jobs:
           git mv build/* . -k
           echo 'Commiting...'
           git commit -m "Deploy ${{ github.sha }}"
-      - name: Push Changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{secrets.PAT}}
-          branch: release
+          git push
