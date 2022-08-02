@@ -36,4 +36,8 @@ jobs:
           git mv build/* . -k
           echo 'Commiting...'
           git commit -m "Deploy ${{github.ref}}"
-          git push
+      - name: Push Changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{secrets.PAT}}
+          branch: release
