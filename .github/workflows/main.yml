@@ -20,8 +20,7 @@ jobs:
       - name: version
         id: set-version
         run: |
-          hej=nbgv get-version -v NuGetPackageVersion
-          export VERSION=$hej
+          export VERSION=$(nbgv get-version -v NuGetPackageVersion)
           echo "::set-env name=VERSION::$VERSION"
           echo $VERSION
       - name: dotnet publish
