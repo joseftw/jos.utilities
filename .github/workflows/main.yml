@@ -20,8 +20,8 @@ jobs:
         run: dotnet publish '.\src\JOS.Utilities.UI\' --configuration Release --output build
       - name: release
         run: |
-          git config user.email = "noreply@local.localhost"
-          git config user.name = "GitHub Actions Bot"
+          git config user.email noreply@local.localhost
+          git config user.name "GitHub Actions Bot"
           git fetch
           git checkout release
           echo 'Removing all old files...'
