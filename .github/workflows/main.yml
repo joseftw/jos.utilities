@@ -18,9 +18,9 @@ jobs:
         with:
           dotnet-version: 6.*
       - name: version
-        run: nbgv get-version
+        run: nbgv get-version -v Version
       - name: dotnet publish
-        run: dotnet publish '.\src\JOS.Utilities.UI\' /p:AssemblyVersion=$(nbgv get-version) --configuration Release --output build
+        run: dotnet publish '.\src\JOS.Utilities.UI\' /p:AssemblyVersion=$(nbgv get-version -v Version) --configuration Release --output build
       - name: release
         run: |
           git config user.email noreply@local.localhost
