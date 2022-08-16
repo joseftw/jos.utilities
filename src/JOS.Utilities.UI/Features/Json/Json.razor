@@ -1,0 +1,66 @@
+﻿@page "/json"
+@inject ILogger<Json> _logger
+@inject IJSRuntime _jsRuntime;
+
+
+<PageTitle>Json</PageTitle>
+
+<h1>Json</h1>
+
+<div class="row">
+    <h3>Format</h3>
+    <form id="format-form">
+        <div class="mb-3">
+            <div id="sourceHelp" class="form-text">The json you want to format</div>
+            <textarea @oninput="SourceTextAreaOnChange"
+                      class="form-control"
+                      id="source"
+                      aria-describedby="sourceHelp"
+                      rows="7" />
+        </div>
+        <div class="mb-3">
+            <div class="form-text">The formatted result</div>
+            <pre class="bg-light result formatted-json-result">
+                @_formattedJson
+            </pre>
+        </div>
+    </form>
+</div>
+
+@code {
+    private string? _sourceInput { get; set; }
+    private string? _formattedJson { get; set; }
+
+    public Json()
+    {
+        _sourceInput = string.Empty;
+        _formattedJson = string.Empty;
+    }
+
+    public Task SourceTextAreaOnChange(ChangeEventArgs args)
+    {
+        _logger.LogInformation("SourceTextAreaOnChange");
+        var value = args?.Value?.ToString() ?? string.Empty;
+
+        if(string.IsNullOrWhiteSpace(value))
+        {
+            return Task.CompletedTask;
+        }
+
+        try
+        {
+            var jsonDocument = System.Text.Json.JsonDocument.Parse(value);
+            using(jsonDocument)
+            {
+                var formatted = System.Text.Json.JsonSerializer.Serialize(jsonDocument, new System.Text.Json.JsonSerializerOptions { WriteIndented = true });
+                _formattedJson = formatted;
+            }
+        }
+        catch
+        {
+
+        }
+
+        return Task.CompletedTask;
+    }
+}

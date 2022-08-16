@@ -63,8 +63,15 @@ a, .btn-link {
         content: "An error has occurred."
     }
 
-.base64-result {
+.result {
     min-height: 10em;
     word-break: break-all;
+}
+
+.base64-result {
     white-space: pre-line;
+}
+
+.formatted-json-result {
+    white-space: pre;
 }
