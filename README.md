@@ -9,3 +9,6 @@ Blazor WASM site with a few utilities that simplifies my life.
 
 ### [/base64](https://stuff.josef.codes/base64)
 Encoding/decoding of base64 strings
+
+### [/json](https://stuff.josef.codes/json)
+Pretty formatting of a json string
