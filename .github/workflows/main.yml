@@ -16,7 +16,7 @@ jobs:
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 6.*
+          dotnet-version: 7.*
       - name: dotnet publish
         run: dotnet publish '.\src\JOS.Utilities.UI\' /p:AssemblyVersion=$(nbgv get-version -v Version) --configuration Release --output build
       - name: Release
